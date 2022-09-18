@@ -1,8 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./popup.css";
+import "../assets/tailwind.css";
 
-const test = <h1>testst</h1>;
+const test = (
+  <div>
+    <h1>헬로헬로 테일윈드</h1>
+    <p className="text-5xl text-green-500">우헤헤헤헤ㅔㅎ에에에ㅔ에</p>
+  </div>
+);
 
 const container = document.createElement("div");
 document.body.appendChild(container);

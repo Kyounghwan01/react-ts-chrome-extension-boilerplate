@@ -4,6 +4,8 @@ const path = require("path");
 // // 특정 파일 내부 파일 복사 붙 -> public내 모든파일 복사하여 dist에 넣어준다
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
 
 // eval error -> sourcemap으로 방지
 
@@ -16,17 +18,31 @@ module.exports = {
   module: {
     rules: [
       { use: "ts-loader", test: /\.tsx$/, exclude: /node_modules/ },
-      { use: ["style-loader", "css-loader"], test: /\.css$/ }
+      {
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                ident: "postcss",
+                plugins: [tailwindcss, autoprefixer]
+              }
+            }
+          }
+        ],
+        test: /\.css$/
+      }
     ]
   },
   plugins: [
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve("src/assets/manifest.json"),
+          from: path.resolve("src/static"),
           to: path.resolve("dist")
-        },
-        { from: path.resolve("src/assets/icon.png"), to: path.resolve("dist") }
+        }
       ]
     }),
     new HtmlWebpackPlugin({
