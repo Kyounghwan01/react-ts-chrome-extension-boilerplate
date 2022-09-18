@@ -12,5 +12,12 @@
     "default_title": "click me",
     "default_popup": "popup.html"
   },
+  "permissions": [
+    "tabs",
+    "bookmarks"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "options_page": "options.html"
 }

@@ -17,6 +17,9 @@
     "typescript": "^4.8.2"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.197",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.11",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
