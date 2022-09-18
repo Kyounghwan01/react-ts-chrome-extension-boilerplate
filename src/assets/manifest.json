@@ -1,0 +1,15 @@
+{
+  "name": "익스텐션이름",
+  "description": "익스텐션 설명",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_title": "click me",
+    "default_popup": "popup.html"
+  }
+}
