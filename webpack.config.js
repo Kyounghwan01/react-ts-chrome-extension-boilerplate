@@ -13,7 +13,8 @@ module.exports = {
   mode: "development",
   devtool: "cheap-module-source-map",
   entry: {
-    popup: path.resolve("./src/popup/popup.tsx")
+    popup: path.resolve("./src/popup/popup.tsx"),
+    options: path.resolve("./src/options/options.tsx")
   },
   module: {
     rules: [
@@ -33,6 +34,10 @@ module.exports = {
           }
         ],
         test: /\.css$/
+      },
+      {
+        type: "assets/resource",
+        test: /\.(png|jpg|jpeg|gif|woff|woff2|tff|eot|svg)$/
       }
     ]
   },
@@ -45,17 +50,19 @@ module.exports = {
         }
       ]
     }),
-    new HtmlWebpackPlugin({
-      title: "ReactJS BoilerPlate",
-      filename: "popup.html",
-      chunks: ["popup"]
-    })
+    ...getHtmlPlugins(["popup", "options"])
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
   output: {
     filename: "[name].js"
+  },
+  // 같이쓰이는 dependencs는 중복 호출 안하게
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
   }
   // entry: {
   //   popup: "./src/popup.jsx",
@@ -85,3 +92,14 @@ module.exports = {
   // },
   // experiments: { topLevelAwait: true },
 };
+
+function getHtmlPlugins(chunks) {
+  return chunks.map(
+    chunk =>
+      new HtmlWebpackPlugin({
+        title: "React Extension",
+        filename: `${chunk}.html`,
+        chunks: [chunk]
+      })
+  );
+}

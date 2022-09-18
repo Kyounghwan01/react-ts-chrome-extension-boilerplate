@@ -11,5 +11,6 @@
   "action": {
     "default_title": "click me",
     "default_popup": "popup.html"
-  }
+  },
+  "options_page": "options.html"
 }
