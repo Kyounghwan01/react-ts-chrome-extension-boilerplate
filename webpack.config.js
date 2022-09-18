@@ -14,7 +14,10 @@ module.exports = {
     popup: path.resolve("./src/popup/popup.tsx")
   },
   module: {
-    rules: [{ use: "ts-loader", test: /\.tsx$/, exclude: /node_modules/ }]
+    rules: [
+      { use: "ts-loader", test: /\.tsx$/, exclude: /node_modules/ },
+      { use: ["style-loader", "css-loader"], test: /\.css$/ }
+    ]
   },
   plugins: [
     new CopyPlugin({
