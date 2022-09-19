@@ -1,16 +1,24 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
 import "../assets/tailwind.css";
 
-const test = (
-  <div>
-    <h1>헬로헬로 테일윈드</h1>
-    <p className="text-5xl text-green-500">우헤헤헤헤ㅔㅎ에에에ㅔ에</p>
-    <img src="icon.png" />
-  </div>
-);
+const handleChromeNewTab = () => {
+  console.log("크롬 뉴탭");
+  chrome.tabs.create({ url: "./options.html", selected: true, active: true });
+};
 
-const container = document.createElement("div");
-document.body.appendChild(container);
-const root = createRoot(container);
-root.render(test);
+const Popup = () => {
+  return (
+    <div className="h-screen">
+      <div className="flex justify-center items-center py-44">
+        <button
+          onClick={handleChromeNewTab}
+          className="py04 px-3 bg-indigo-500 text-white m-2"
+        >
+          테스트
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Popup;

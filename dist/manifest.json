@@ -12,9 +12,14 @@
     "default_title": "click me",
     "default_popup": "popup.html"
   },
+  "chrome_url_overrides": {
+    "newtab": "newTab.html"
+  },
   "permissions": [
     "tabs",
-    "bookmarks"
+    "bookmarks",
+    "storage",
+    "identity"
   ],
   "background": {
     "service_worker": "background.js"
