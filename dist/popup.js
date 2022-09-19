@@ -46,10 +46,26 @@ const handleChromeNewTab = () => {
     console.log("크롬 뉴탭");
     chrome.tabs.create({ url: "./options.html", selected: true, active: true });
 };
+const handleInput = e => {
+    e.preventDefault();
+    const name = e.target[0].value;
+    chrome.storage.sync.set({ name }, () => {
+        console.log(`이름 셋됨: ${name}`);
+    });
+};
 const Popup = () => {
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        chrome.storage.sync.get(["name"], res => {
+            console.log(res.name);
+        });
+    }, []);
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "h-screen" },
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "flex justify-center items-center py-44" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: handleChromeNewTab, className: "py04 px-3 bg-indigo-500 text-white m-2" }, "\uD14C\uC2A4\uD2B8"))));
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { onClick: handleChromeNewTab, className: "py04 px-3 bg-indigo-500 text-white m-2" }, "\uD14C\uC2A4\uD2B8")),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", { onSubmit: handleInput, className: "flex justify-center items-center py-44" },
+                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { type: "text", name: "name", className: "bg-gray ring-black px-4 py-4", placeholder: "input" }),
+                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { className: "py04 px-3 bg-indigo-500 text-white m-2" }, "submit")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
 
